@@ -1,35 +1,28 @@
+/*
+ * A Caesar Cipher written in nothing but C.
+ *
+ * Author: Storm Van Soldt
+ *
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 #include <cs50.h>
 
-// To get from the ASCII value of a number to the alphabetical index we need to do some math.
-// If the letter is capital, subtract 65 from the ASCII value. If it is lowercase,
-// we need to subtract an additional 32 to get the correct value.
+int cipher(char v, int k);
 
-// Converts a character (v) to its alphabetical index, ciphers it using the key (k), then
-// returns the ciphered character's ASCII value.
-int cipher(char v, int k)
-{
-	int position = tolower(v) - 'a';
-	char value = ((position + k) % 26) + 'a';
-
-	if (isupper(v))
-	{
-		value = toupper(value);
-	}
-
-	return value;
-}
-
+/*
+ * Checks to ensure that there are enough command-line arguments, and that those
+ * arguments are valid. Then runs the input through a Caesar Cipher, printing
+ * the result to STDOUT.
+ */
 int main (int argc, string argv[])
 {	
-	// Variable declaration
 	int key, n;
 	string text;
-	char encoded[n];
+	char encoded[50];
 
-	// Let's check to make sure we have the required arguments, and that they are valid.
 	if (argc == 2 && argv[1] != 0)
 	{
 		key = atoi(argv[1]);
@@ -60,4 +53,28 @@ int main (int argc, string argv[])
 	}
 
 	printf("\n");
+}
+
+/*
+ * Function: cipher
+ * ----------------
+ *	Increments a single character by k times, rolling over back to 'a' if the 
+ *	input continues past 'z'. Eg, cipher(a, 1) would return 'b'.
+ *
+ *	v: a single character to run through the cipher
+ *	k: number of times to increment the character
+ *
+ *	returns: input character incremented by k times
+ */
+int cipher(char v, int k)
+{
+	int position = tolower(v) - 'a';
+	char value = ((position + k) % 26) + 'a';
+
+	if (isupper(v))
+	{
+		value = toupper(value);
+	}
+
+	return value;
 }

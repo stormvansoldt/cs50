@@ -37,5 +37,4 @@ int main(void)
 	}
 
 	printf("Number of coins: %i\n", result);
-
 }

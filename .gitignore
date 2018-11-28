@@ -1,0 +1,6 @@
+# The combination below allows us to exclude the binaries from git
+*
+
+!*.*
+
+!*/

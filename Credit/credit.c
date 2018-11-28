@@ -124,12 +124,9 @@ int check_card_type(long card, int len)
 {
     int first_two = card / (pow(10, (len - 2)));
 
-    if (len == 15)
+    if (len == 15 && (first_two == 34 || first_two == 37))
     {
-        if (first_two == 34 || first_two == 37)
-        {
-            return 1;
-        }
+        return 1;
     }
 
     if (len == 16 && first_two >= 51 && first_two <= 55)
